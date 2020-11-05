@@ -17,12 +17,20 @@ import Home from "./pages/Home";
 import Header from "./components/nav/Header";
 import RegisterComplete from "./pages/auth/RegisterComplete";
 import ForgotPassword from "./pages/auth/ForgotPassword";
+//user
 import History from "./pages/user/History";
 import Password from "./pages/user/Password";
 import Wishlist from "./pages/user/Wishlist";
 import UserRoute from "./components/routes/UserRoute";
+//admin
 import AdminRoute from "./components/routes/AdminRoute";
-import AdminDashboard from './pages/admin/AdminDashboard'
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import CategoryCreate from "./pages/admin/category/CategoryCreate";
+import CategoryUpdate from "./pages/admin/category/CategoryUpdate";
+import SubCreate from "./pages/admin/sub/SubCreate";
+import SubUpdate from "./pages/admin/sub/SubUpdate";
+//Product
+import ProductCreate from "./pages/admin/product/ProductCreate";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -49,7 +57,7 @@ const App = () => {
           .catch((err) => console.log(err));
       }
     });
-    //clearnup
+    //cleanup
     return () => unsubscribe();
   }, [dispatch]);
   return (
@@ -65,7 +73,16 @@ const App = () => {
         <UserRoute path="/user/history" exact component={History} />
         <UserRoute path="/user/wishlist" exact component={Wishlist} />
         <UserRoute path="/user/password" exact component={Password} />
-        <AdminRoute path="/admin/dashboard" exact component={AdminDashboard}/>
+        <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
+        <AdminRoute path="/admin/category" exact component={CategoryCreate} />
+        <AdminRoute
+          path="/admin/category/:slug"
+          exact
+          component={CategoryUpdate}
+        />
+        <AdminRoute path="/admin/sub" exact component={SubCreate} />
+        <AdminRoute exact path="/admin/sub/:slug" component={SubUpdate} />
+        <AdminRoute exact path="/admin/product" component={ProductCreate} />
       </Switch>
     </>
   );
