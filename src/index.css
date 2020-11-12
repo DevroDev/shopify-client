@@ -1,0 +1,6 @@
+.slider img,
+.card-image {
+  background-color: white;
+  height: 300px;
+  object-fit: contain;
+}

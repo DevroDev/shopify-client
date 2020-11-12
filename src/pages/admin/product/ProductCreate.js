@@ -22,8 +22,17 @@ const initialState = {
   shipping: "",
   quantity: "",
   images: [],
-  colors: ["Black", "Brown", "Silver", "White", "Blue"],
-  brands: ["Apple", "Samsung", "Microsoft", "Lenovo", "ASUS"],
+  colors: ["Black", "Brown", "Silver", "White", "Blue", "Red", "Yellow"],
+  brands: [
+    "Nike",
+    "Apple",
+    "Microsoft",
+    "Lenovo",
+    "Yeezy",
+    "Ferarri",
+    "Yamaha",
+    "Sony",
+  ],
   color: "",
   brand: "",
 };
@@ -95,7 +104,7 @@ const ProductCreate = () => {
             <h4>Product create</h4>
           )}
           <hr />
-          {JSON.stringify(values.images)}
+          {/*JSON.stringify(values.images)*/}
           <div className="p-3">
             <FileUpload
               values={values}

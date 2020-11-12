@@ -1,38 +1,162 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --primaryColor:#fa7544;
+  --mainWhite: #fff;
+  --offWhite: #f7f7f7;
+  --mainBlack: rgb(20, 20, 20);
+  --mainGrey: #ececec;
+  --darkGrey: #631b1b;
+  --mainTransition: all 0.3s linear;
+  --mainSpacing: 3px;
+  --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+  --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+}
+/* globals */
+body {
+  color: var(--mainWhite);
+  background: var(--mainBlack);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.4;
+}
+h1 {
+  font-size: 3em;
+  line-height: 1;
+  margin-bottom: 0.5em;
+}
+h2 {
+  font-size: 2em;
+  margin-bottom: 0.75em;
+}
+mainBlack h3 {
+  font-size: 1.5em;
+  line-height: 1;
+  margin-bottom: 1em;
+}
+h4 {
+  font-size: 1.2em;
+  line-height: 1.25;
+  margin-bottom: 1.25em;
+}
+h5 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 1.5em;
+}
+h6 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 1.5em;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.btn-primary {
+  display: inline-block;
+  text-decoration: none;
+  letter-spacing: var(--mainSpacing);
+  color: var(--mainBlack);
+  background: var(--primaryColor);
+  padding: 0.4rem 0.9rem;
+  border: 3px solid var(--primaryColor);
+  transition: var(--mainTransition);
+  text-transform: uppercase;
+  cursor: pointer;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.btn-primary:hover {
+  background: transparent;
+  color: var(--primaryColor);
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* end of globals */
+/* Hero */
+.defaultHero {
+  min-height: calc(102vh - 66px);
+  background: url("./images/defaultBcg.jpg") center/cover no-repeat;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.bg-text {
+  background-color: var(--primaryColor);
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* End of Hero */
+/* Banner */
+.banner {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--mainWhite);
+  padding: 2rem 1rem;
+  text-align: center;
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+}
+.banner h1 {
+  font-size: 2.5rem;
+  color: var(--mainWhite);
+}
+.banner div {
+  width: 10rem;
+  height: 5px;
+  background: var(--primaryColor);
+  margin: 1.7rem auto;
+}
+.banner p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+@media screen and (min-width: 576px) {
+  .banner {
+    padding: 2rem 3rem;
   }
-  to {
-    transform: rotate(360deg);
+  .banner h1 {
+    font-size: 3rem;
   }
+}
+@media screen and (min-width: 992px) {
+  .banner {
+    padding: 2rem 6rem;
+  }
+  .banner h1 {
+    font-size: 4rem;
+  }
+}
+/* End of Banner */
+/* Title */
+.section-title {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.section-title h4 {
+  font-size: 2rem;
+  letter-spacing: var(--mainSpacing);
+  text-transform: capitalize;
+  margin-bottom: 1rem;
+}
+.section-title div {
+  width: 5rem;
+  height: 5px;
+  margin: 0 auto;
+  background: var(--primaryColor);
+}
+/* end of Title */
+/* Jumbotron */
+.jumbotron {
+  background-color: var(--primaryColor);
+}
+.boxShadow {
+  -webkit-box-shadow: 3px 5px 9px 0px rgba(0, 0, 0, 0.57);
+  -moz-box-shadow: 3px 5px 9px 0px rgba(0, 0, 0, 0.57);
+  box-shadow: 3px 5px 9px 0px rgba(0, 0, 0, 0.57);
+}
+.priceButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px 20px;
+  background-color: var(--primaryColor);
+  border-radius: 20px;
+  font-size: 1rem;
+  letter-spacing: 1.5px;
 }

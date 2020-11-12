@@ -38,7 +38,11 @@ const Header = () => {
   };
 
   return (
-    <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
+    <Menu
+      onClick={handleClick}
+      selectedKeys={[current]}
+      mode="horizontal"
+    >
       <Item key="home" icon={<AppstoreOutlined />}>
         <Link to="/">Home</Link>
       </Item>
@@ -56,7 +60,7 @@ const Header = () => {
         <SubMenu
           key="SubMenu"
           icon={<SettingOutlined />}
-          title={user.email && user.email.split("@")[0]} //name@gmail.com
+          title={user.email && user.email.split("@")[0]} //name@gmail.com to name
           className="float-right"
         >
           {user && user.role === "subscriber" && (

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
+import "./App.css";
 
 //toast
 import { ToastContainer } from "react-toastify";
@@ -22,6 +23,7 @@ import History from "./pages/user/History";
 import Password from "./pages/user/Password";
 import Wishlist from "./pages/user/Wishlist";
 import UserRoute from "./components/routes/UserRoute";
+import Product from "./pages/Product";
 //admin
 import AdminRoute from "./components/routes/AdminRoute";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -31,6 +33,11 @@ import SubCreate from "./pages/admin/sub/SubCreate";
 import SubUpdate from "./pages/admin/sub/SubUpdate";
 //Product
 import ProductCreate from "./pages/admin/product/ProductCreate";
+import ProductUpdate from "./pages/admin/product/ProductUpdate";
+import AllProducts from "./pages/admin/product/AllProducts";
+//Category
+import CategoryHome from "./pages/category/CategoryHome";
+import SubHome from "./pages/sub/SubHome";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -40,7 +47,7 @@ const App = () => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         const idTokenResult = await user.getIdTokenResult();
-        console.log("user", user);
+        //console.log("user", user);
         currentUser(idTokenResult.token)
           .then((res) => {
             dispatch({
@@ -66,6 +73,7 @@ const App = () => {
       <ToastContainer />
       <Switch>
         <Route path="/" exact component={Home} />
+        <Route path="/product/:slug" exact component={Product} />
         <Route path="/login" exact component={Login} />
         <Route path="/register" exact component={Register} />
         <Route path="/register/complete" exact component={RegisterComplete} />
@@ -83,6 +91,14 @@ const App = () => {
         <AdminRoute path="/admin/sub" exact component={SubCreate} />
         <AdminRoute exact path="/admin/sub/:slug" component={SubUpdate} />
         <AdminRoute exact path="/admin/product" component={ProductCreate} />
+        <AdminRoute exact path="/admin/products" component={AllProducts} />
+        <AdminRoute
+          exact
+          path="/admin/product/:slug"
+          component={ProductUpdate}
+        />
+        <Route exact path="/category/:slug" component={CategoryHome} />
+        <Route exact path="/sub/:slug" component={SubHome} />
       </Switch>
     </>
   );
