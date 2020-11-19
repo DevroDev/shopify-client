@@ -28,9 +28,8 @@ const NewArrivals = () => {
   };
   return (
     <div>
-      <h4 className="text-center p-3 mt-5 mb-5 display-4 jumbotron">
-        Latest Product
-      </h4>
+      <h2 className="text-center pt-3  mt-5">Latest Products</h2>
+      <div className="borderBottom mb-5"></div>
 
       <div className="container">
         {loading ? (

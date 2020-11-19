@@ -1,6 +1,6 @@
-import React from "react";
-import { Card, Tabs } from "antd";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Card, Tabs, Tooltip } from "antd";
+import { useHistory } from "react-router-dom";
 import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -9,25 +9,78 @@ import ProductListItems from "./ProductListItems";
 import StarRating from "react-star-ratings";
 import RatingModal from "../modal/RatingModal";
 import { showAverage } from "../../functions/rating";
+import { useSelector, useDispatch } from "react-redux";
+import { addToWishlist } from "../../functions/user";
+import _ from "lodash";
+import { toast } from "react-toastify";
 
 const { TabPane } = Tabs;
 
 // this is childrend component of Product page
 const SingleProduct = ({ product, onStarClick, star }) => {
   const { title, images, description, _id } = product;
+  const [tooltip, setTooltip] = useState("Click to Add");
+
+  const { user, cart } = useSelector((state) => ({ ...state }));
+  const dispatch = useDispatch();
+
+  let history=useHistory()
+
+  const handleAddToCart = () => {
+    // create cart array
+    let cart = [];
+    if (typeof window !== "undefined") {
+      // if cart is in local storage GET it
+      if (localStorage.getItem("cart")) {
+        cart = JSON.parse(localStorage.getItem("cart"));
+      }
+      // push new product to cart
+      cart.push({
+        ...product,
+        count: 1,
+      });
+      // remove duplicates
+      let unique = _.uniqWith(cart, _.isEqual);
+      // save to local storage
+      // console.log('unique', unique)
+      localStorage.setItem("cart", JSON.stringify(unique));
+
+      //show tooltip
+      setTooltip("Added");
+
+      //add to redux state
+      dispatch({
+        type: "ADD_TO_CART",
+        payload: cart,
+      });
+    }
+  };
+
+  const handleAddToWishlist = (e) => {
+    e.preventDefault();
+    addToWishlist(product._id, user.token).then((res) => {
+      //console.log("Added to Wishlist", res.data);
+      toast.success("Added to wishlist");
+      history.push("/user/wishlist");
+    });
+  };
 
   return (
-    <div className="container">
+    <div className="container pt-5">
       <div className="row">
         <div className="col-md-6">
           {images && images.length ? (
             <Carousel showArrows={true} autoPlay infiniteLoop>
               {images &&
-                images.map((i) => <img src={i.url} key={i.public_id} />)}
+                images.map((i) => (
+                  <img src={i.url} key={i.public_id} alt="product" />
+                ))}
             </Carousel>
           ) : (
             <Card
-              cover={<img src={Laptop} className="mb-3 card-image" />}
+              cover={
+                <img src={Laptop} className="mb-3 card-image" alt="product" />
+              }
             ></Card>
           )}
 
@@ -50,13 +103,15 @@ const SingleProduct = ({ product, onStarClick, star }) => {
 
           <Card
             actions={[
-              <>
-                <ShoppingCartOutlined className="text-success" /> <br />
-                Add to Cart
-              </>,
-              <Link to="/">
+              <Tooltip title={tooltip}>
+                <a onClick={handleAddToCart}>
+                  <ShoppingCartOutlined className="text-danger" /> <br /> Add to
+                  Cart
+                </a>
+              </Tooltip>,
+              <a onClick={handleAddToWishlist}>
                 <HeartOutlined className="text-info" /> <br /> Add to Wishlist
-              </Link>,
+              </a>,
               <RatingModal>
                 <StarRating
                   name={_id}

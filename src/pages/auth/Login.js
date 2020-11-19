@@ -110,10 +110,10 @@ const Login = ({ history }) => {
 
   const loginForm = () => (
     <form onSubmit={handleSubmit}>
-      <div className="form-group">
+      <div className="form-input form-group">
         <input
           type="email"
-          className="form-control"
+          className="form-control px-4"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Your Email"
@@ -121,10 +121,10 @@ const Login = ({ history }) => {
         />
       </div>
       <br />
-      <div className="form-group">
+      <div className="form-input form-group">
         <input
           type="password"
-          className="form-control"
+          className="form-control px-4"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Enter Password"
@@ -133,8 +133,8 @@ const Login = ({ history }) => {
       <br />
       <Button
         onClick={handleSubmit}
-        type="primary"
-        className="mb-3"
+        style={{backgroundColor:'#adefd1ff'}}
+        className="mb-3 px-4"
         block
         shape="round"
         icon={<MailOutlined />}
@@ -147,19 +147,19 @@ const Login = ({ history }) => {
   );
 
   return (
-    <div className="container p-5">
-      <div className="row">
-        <div className="col-md-6 offset-md-3">
+    <div className="container-fluid form-container">
+      <div className="row pt-5">
+        <div className="col-lg-12 pt-5 login-form boxShadow text-center">
           {loading ? (
-            <h4 className="text-danger">Loading....</h4>
+            <h2 className="text-danger pt-5">Loading....</h2>
           ) : (
-            <h4>Login</h4>
+            <h2 className="pt-5" style={{color:'white'}}>Login</h2>
           )}
           {loginForm()}
           <Button
             onClick={googleLogin}
             type="danger"
-            className="mb-3"
+            className="mb-3 px-4"
             block
             shape="round"
             icon={<GoogleOutlined />}

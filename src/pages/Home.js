@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 
 import NewArrivals from "../components/home/NewArrivals";
 import BestSellers from "../components/home/BestSellers";
-import Jumbotron from "../components/cards/Jumbotron";
+//import Jumbotron from "../components/cards/Jumbotron";
 import Hero from "../components/cards/Hero";
 import Banner from "../components/cards/Banner";
-import CategoryList from "../components/category/CategoryList";
-import SubList from "../components/sub/SubList";
+import LandingPage from "../components/cards/LandingPage";
+//import CategoryList from "../components/category/CategoryList";
+//import SubList from "../components/sub/SubList";
+import Footer from "../components/footer/Footer";
 
 const Home = () => {
   return (
@@ -15,7 +17,7 @@ const Home = () => {
       <div className="">
         <Hero>
           <Banner title="Giggle Shop" subtitle="The good life at a great price">
-            <Link to="/sneakers" className="btn-primary">
+            <Link to="/shop" className="btn-primary">
               Start Shopping
             </Link>
           </Banner>
@@ -25,11 +27,12 @@ const Home = () => {
         <Jumbotron text={["Best Seller", "New Arrival"]} />
       </div>*/}
       <NewArrivals />
+      <LandingPage />
       <BestSellers />
-      <CategoryList />
-      <SubList />
-      <br />
-      <br />
+      {/*<CategoryList />
+      <SubList />*/}
+      <br/>
+      <Footer />
     </div>
   );
 };

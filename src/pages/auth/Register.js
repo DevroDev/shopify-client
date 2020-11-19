@@ -46,17 +46,17 @@ const Register = ({history}) => {
         autoFocus
       />
       <br/>
-      <button type="submit" className="btn btn-raised">
+      <button type="submit" className="mt-3 btn-primary">
         Register
       </button>
     </form>
   );
 
   return (
-    <div className="container p-5">
+    <div className="container-fluid form-container p-5">
       <div className="row">
-        <div className="col-md-6 offset-md-3">
-          <h4>Register</h4>
+        <div className="col-md-12 text-center register-form boxShadow  pt-5">
+          <h3 className="pb-5" style={{color:'white'}}>Register</h3>
           {registerForm()}
         </div>
       </div>

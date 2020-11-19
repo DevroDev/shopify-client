@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {useSelector} from 'react-redux'
 import {toast} from 'react-toastify'
 //functions
-import { getProductByCount, removeProduct } from "../../../functions/product";
+import { getProductsByCount, removeProduct } from "../../../functions/product";
 //Components
 import AdminNav from "../../../components/nav/AdminNav";
 import AdminProductCard from "../../../components/cards/AdminProductCard";
@@ -19,7 +19,7 @@ const AllProducts = () => {
 
   const loadAllProducts = () => {
     setLoading(true);
-    getProductByCount(100)
+    getProductsByCount(100)
       .then((res) => {
         setProducts(res.data);
         setLoading(false);
@@ -46,8 +46,8 @@ const AllProducts = () => {
     }
   };
   return (
-    <div className="container-fluid">
-      <div className="row">
+    <div className="container-fluid pt-5">
+      <div className="row  pt-3">
         <div className="col-md-2">
           <AdminNav />
         </div>

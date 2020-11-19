@@ -1,26 +1,32 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+//functions
+import {emptyUserCart} from "../../functions/user";
 //ant
-import { Menu } from "antd";
+import { Menu, Badge } from "antd";
 import {
   AppstoreOutlined,
   SettingOutlined,
   UserOutlined,
   UserAddOutlined,
   LogoutOutlined,
+  ShoppingOutlined,
+  ShoppingCartOutlined,
 } from "@ant-design/icons";
 
 //redux
 import firebase from "firebase";
 import { useDispatch, useSelector } from "react-redux";
 
+import Search from "../forms/Search";
+
 const { SubMenu, Item } = Menu;
 
 const Header = () => {
   const [current, setCurrent] = useState("home");
   let dispatch = useDispatch();
-  let { user } = useSelector((state) => ({ ...state }));
+  let { user, cart } = useSelector((state) => ({ ...state }));
   let history = useHistory();
 
   const handleClick = (e) => {
@@ -34,6 +40,15 @@ const Header = () => {
       type: "LOGOUT",
       payload: null,
     });
+    // empty cart from local storage
+    if (typeof window !== "undefined") localStorage.removeItem("cart");
+    // empty cart from redux
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: [],
+    });
+    // empty cart from database
+    emptyUserCart(user.token);
     history.push("/login");
   };
 
@@ -42,9 +57,20 @@ const Header = () => {
       onClick={handleClick}
       selectedKeys={[current]}
       mode="horizontal"
+      className="nav-bar"
     >
       <Item key="home" icon={<AppstoreOutlined />}>
         <Link to="/">Home</Link>
+      </Item>
+      <Item key="shop" icon={<ShoppingOutlined />}>
+        <Link to="/shop">Shop</Link>
+      </Item>
+      <Item key="cart" icon={<ShoppingCartOutlined />}>
+        <Link to="/cart">
+          <Badge count={cart.length} offset={[9, 0]}>
+            Cart
+          </Badge>
+        </Link>
       </Item>
       {!user && (
         <Item key="register" icon={<UserAddOutlined />} className="float-right">
@@ -78,6 +104,9 @@ const Header = () => {
           </Item>
         </SubMenu>
       )}
+      <span className="float-right pt-2">
+        <Search />
+      </span>
     </Menu>
   );
 };
