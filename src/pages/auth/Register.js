@@ -15,8 +15,7 @@ const Register = ({history}) => {
   useEffect(() => {
     if (user && user.token) history.push("/");
   }, [user,history]);
-
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     //console.log('Env---->',process.env.REACT_APP_REGISTER_REDIRECT_URL)
