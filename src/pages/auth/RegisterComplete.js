@@ -72,11 +72,11 @@ const RegisterComplete = ({ history }) => {
 
   const completeRegistrationForm = () => (
     <form onSubmit={handleSubmit}>
-      <input type="email" className="form-control" value={email} disabled />
+      <input type="email" className="form-control text-primary" value={email} disabled />
 
       <input
         type="password"
-        className="form-control"
+        className="form-control text-primary"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"

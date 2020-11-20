@@ -113,7 +113,7 @@ const Login = ({ history }) => {
       <div className="form-input form-group">
         <input
           type="email"
-          className="form-control px-4 text-dark"
+          className="form-control px-4 text-primary"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Your Email"
@@ -124,7 +124,7 @@ const Login = ({ history }) => {
       <div className="form-input form-group">
         <input
           type="password"
-          className="form-control px-4 text-dark"
+          className="form-control px-4 text-primary"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Enter Password"

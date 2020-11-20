@@ -39,7 +39,7 @@ const Register = ({history}) => {
     <form onSubmit={handleSubmit}>
       <input
         type="email"
-        className="form-control text-dark"
+        className="form-control text-primary"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Your Email"

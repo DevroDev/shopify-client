@@ -118,7 +118,7 @@ label{
 /* End of Hero */
 /* Loading Spinner*/
 .loader {
-  min-height: calc(110vh - 66px);
+  min-height: calc(100vh - 66px);
   display: flex;
   align-items: center;
   justify-content: center;
