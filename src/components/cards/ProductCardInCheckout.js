@@ -108,7 +108,7 @@ const ProductCardInCheckout = ({ p }) => {
           <div className="cart-card">
             <input
               type="number"
-              className="cart-input"
+              className="cart-input text-primary"
               value={p.count}
               onChange={handleQuantityChange}
             />

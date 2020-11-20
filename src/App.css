@@ -53,6 +53,12 @@ p {
   color: #494949;
   font-family: "Times New Roman", Times, serif;
 }
+td{
+  color:#494949;
+}
+label{
+  color:#494949;
+}
 .borderBottom {
   border-bottom: #494949 3px solid;
   margin: 0px 48%;
