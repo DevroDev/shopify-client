@@ -116,6 +116,13 @@ label{
   background-color: var(--primaryColor);
 }
 /* End of Hero */
+/* Loading Spinner*/
+.loader {
+  min-height: calc(110vh - 66px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 /* Banner */
 .banner {
   display: inline-block;

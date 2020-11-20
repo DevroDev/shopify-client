@@ -119,7 +119,15 @@ const App = () => {
     return () => unsubscribe();
   }, [dispatch]);
   return (
-    <Suspense fallback={<div className="col text-center p-5"><LoadingOutlined/></div>}>
+    <Suspense
+      fallback={
+        <div
+        className="container loader"
+        >
+          <LoadingOutlined style={{ fontSize: "6rem",color:'#adefd1ff' }} />
+        </div>
+      }
+    >
       <Header />
       <SideDrawer />
       <ToastContainer />

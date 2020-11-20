@@ -1,52 +1,50 @@
 import React, { useState, useEffect } from "react";
 import { auth } from "../../firebase";
-import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import {createOrUpdateUser} from "../../functions/auth";
-
-//api ko authtoken po pay mae function
-
+import { useDispatch } from "react-redux";
+import { createOrUpdateUser } from "../../functions/auth";
 
 const RegisterComplete = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // const { user } = useSelector((state) => ({ ...state }));
   let dispatch = useDispatch();
 
   useEffect(() => {
     setEmail(window.localStorage.getItem("emailForRegistration"));
-    //console.log(window.location.href)
-    //console.log()
-  }, []);
+    // console.log(window.location.href);
+    // console.log(window.localStorage.getItem("emailForRegistration"));
+  }, [history]);
 
-  const handleSubmit = async (e) => { 
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    //validation
+    // validation
     if (!email || !password) {
-      toast.error("Email is password is Required");
+      toast.error("Email and password is required");
       return;
     }
+
     if (password.length < 6) {
       toast.error("Password must be at least 6 characters long");
       return;
     }
+
     try {
       const result = await auth.signInWithEmailLink(
         email,
         window.location.href
       );
-      //console.log("Result",result)//result jsonn
-
+      //   console.log("RESULT", result);
       if (result.user.emailVerified) {
-        //remove user email from local Storage
+        // remove user email fom local storage
         window.localStorage.removeItem("emailForRegistration");
-        //get user id token
+        // get user id token
         let user = auth.currentUser;
         await user.updatePassword(password);
         const idTokenResult = await user.getIdTokenResult();
-        //redux store
-        //console.log('user',user,'idTokenResult',idTokenResult);
+        // redux store
+        console.log("user", user, "idTokenResult", idTokenResult);
 
         createOrUpdateUser(idTokenResult.token)
           .then((res) => {
@@ -63,10 +61,11 @@ const RegisterComplete = ({ history }) => {
           })
           .catch((err) => console.log(err));
 
-        //redirect
+        // redirect
         history.push("/");
       }
     } catch (error) {
+      console.log(error);
       toast.error(error.message);
     }
   };
@@ -74,7 +73,7 @@ const RegisterComplete = ({ history }) => {
   const completeRegistrationForm = () => (
     <form onSubmit={handleSubmit}>
       <input type="email" className="form-control" value={email} disabled />
-      <br />
+
       <input
         type="password"
         className="form-control"
@@ -85,7 +84,7 @@ const RegisterComplete = ({ history }) => {
       />
       <br />
       <button type="submit" className="btn btn-raised">
-        Complete Register
+        Complete Registration
       </button>
     </form>
   );
@@ -93,8 +92,8 @@ const RegisterComplete = ({ history }) => {
   return (
     <div className="container p-5">
       <div className="row">
-        <div className="col-md-6 pt-5 offset-md-3">
-          <h4>Complete Register</h4>
+        <div className="col-md-6 offset-md-3">
+          <h4>Register Complete</h4>
           {completeRegistrationForm()}
         </div>
       </div>

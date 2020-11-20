@@ -10,7 +10,7 @@ import { auth, googleAuthProvider } from "../../firebase";
 
 //ant design
 import { Button } from "antd";
-import { MailOutlined, GoogleOutlined } from "@ant-design/icons";
+import { MailOutlined, GoogleOutlined,LoadingOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 
 const Login = ({ history }) => {
@@ -113,7 +113,7 @@ const Login = ({ history }) => {
       <div className="form-input form-group">
         <input
           type="email"
-          className="form-control px-4"
+          className="form-control px-4 text-dark"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Your Email"
@@ -124,7 +124,7 @@ const Login = ({ history }) => {
       <div className="form-input form-group">
         <input
           type="password"
-          className="form-control px-4"
+          className="form-control px-4 text-dark"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Enter Password"
@@ -151,7 +151,7 @@ const Login = ({ history }) => {
       <div className="row pt-5">
         <div className="col-lg-12 pt-5 login-form boxShadow text-center">
           {loading ? (
-            <h2 className="text-danger pt-5">Loading....</h2>
+            <LoadingOutlined className="py-5" style={{fontSize:'2rem',color:'#adefd1ff'}}/>
           ) : (
             <h2 className="pt-5" style={{color:'white'}}>Login</h2>
           )}
