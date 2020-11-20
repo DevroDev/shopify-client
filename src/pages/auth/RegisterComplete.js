@@ -44,7 +44,7 @@ const RegisterComplete = ({ history }) => {
         await user.updatePassword(password);
         const idTokenResult = await user.getIdTokenResult();
         // redux store
-        console.log("user", user, "idTokenResult", idTokenResult);
+        //console.log("user", user, "idTokenResult", idTokenResult);
 
         createOrUpdateUser(idTokenResult.token)
           .then((res) => {
@@ -72,11 +72,11 @@ const RegisterComplete = ({ history }) => {
 
   const completeRegistrationForm = () => (
     <form onSubmit={handleSubmit}>
-      <input type="email" className="form-control text-primary" value={email} disabled />
+      <input type="email" className="form-control" value={email} disabled />
 
       <input
         type="password"
-        className="form-control text-primary"
+        className="form-control"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
