@@ -65,7 +65,7 @@ const History = () => {
       fileName="invoice.pdf"
       className="btn btn-sm btn-block btn-outline-primary"
     >
-      Download PDF
+      Download Invoice PDF
     </PDFDownloadLink>
   );
 

@@ -118,6 +118,7 @@ const StripeCheckout = ({ history }) => {
           </div>
         )}
         <div className="text-center pb-2">
+          <h4>For testing use <span className="text-warning">4242 4242 4242 4242</span> as a card Number</h4>
           <Card
             cover={
               <img
