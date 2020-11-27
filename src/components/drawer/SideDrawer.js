@@ -10,7 +10,7 @@ const SideDrawer = () => {
 
   const imageStyle = {
     width: "100%",
-    height: "50px",
+    height: "100px",
     objectFit: "cover",
   };
 
@@ -34,7 +34,7 @@ const SideDrawer = () => {
             {p.images[0] ? (
               <>
                 <img src={p.images[0].url} style={imageStyle} alt="product" />
-                <p className="text-center bg-secondary text-light">
+                <p className="text-center py-2 bg-secondary text-light">
                   {p.title} x {p.count}
                 </p>
               </>

@@ -35,13 +35,7 @@ const Shop = () => {
     "ASUS",
   ]);
   const [brand, setBrand] = useState("");
-  const [colors] = useState([
-    "Black",
-    "Brown",
-    "Silver",
-    "White",
-    "Blue",
-  ]);
+  const [colors] = useState(["Black", "Brown", "Silver", "White", "Blue"]);
   const [color, setColor] = useState("");
   const [shipping, setShipping] = useState("");
 
@@ -84,7 +78,7 @@ const Shop = () => {
 
   // 3. load products based on price range
   useEffect(() => {
-    console.log("ok to request");
+    //console.log("ok to request");
     fetchProducts({ price });
   }, [ok]);
 
@@ -318,10 +312,7 @@ const Shop = () => {
           <h4>Search/Filter</h4>
           <hr />
 
-          <Menu
-            defaultOpenKeys={["1", "2", "3", "4", "5", "6", "7"]}
-            mode="inline"
-          >
+          <Menu defaultOpenKeys={[]} mode="inline">
             {/* price */}
             <SubMenu
               key="1"
@@ -430,7 +421,10 @@ const Shop = () => {
           {loading ? (
             <h4 className="text-danger">Loading...</h4>
           ) : (
-            <h4 className="text-danger">Products</h4>
+            <div>
+              <h2 className="text-center">Latest Products</h2>
+              <div className="borderBottom mb-2"></div>
+            </div>
           )}
 
           {products.length < 1 && <p>No products found</p>}

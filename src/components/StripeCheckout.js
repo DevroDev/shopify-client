@@ -137,7 +137,7 @@ const StripeCheckout = ({ history }) => {
                 {cartTotal}
               </>,
               <>
-                <CheckOutlined className="text-info" /> <br /> Total payable : $
+                <CheckOutlined className="text-info" /> <br /> Total amount : $
                 {(payable / 100).toFixed(2)}
               </>,
             ]}

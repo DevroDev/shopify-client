@@ -1,113 +1,49 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
-//functions
-import {emptyUserCart} from "../../functions/user";
-//ant
-import { Menu, Badge } from "antd";
-import {
-  AppstoreOutlined,
-  SettingOutlined,
-  UserOutlined,
-  UserAddOutlined,
-  LogoutOutlined,
-  ShoppingOutlined,
-  ShoppingCartOutlined,
-} from "@ant-design/icons";
-
-//redux
-import firebase from "firebase";
-import { useDispatch, useSelector } from "react-redux";
-
-import Search from "../forms/Search";
-
-const { SubMenu, Item } = Menu;
+import LeftMenu from "./components/LeftMenu";
+import RightMenu from "./components/RightMenu";
+import { Drawer, Button } from "antd";
+import Logo from "../../images/logo.png";
+import "./NavStyle.css";
 
 const Header = () => {
-  const [current, setCurrent] = useState("home");
-  let dispatch = useDispatch();
-  let { user, cart } = useSelector((state) => ({ ...state }));
-  let history = useHistory();
-
-  const handleClick = (e) => {
-    //console.log(e.key)
-    setCurrent(e.key);
+  const [visible, setVisible] = useState(false);
+  const showDrawer = () => {
+    setVisible(true);
   };
 
-  const logout = () => {
-    firebase.auth().signOut();
-    dispatch({
-      type: "LOGOUT",
-      payload: null,
-    });
-    // empty cart from local storage
-    if (typeof window !== "undefined") localStorage.removeItem("cart");
-    // empty cart from redux
-    dispatch({
-      type: "ADD_TO_CART",
-      payload: [],
-    });
-    // empty cart from database
-    emptyUserCart(user.token);
-    history.push("/login");
+  const onClose = () => {
+    setVisible(false);
   };
-
   return (
-    <Menu
-      onClick={handleClick}
-      selectedKeys={[current]}
-      mode="horizontal"
-      className="nav-bar"
-    >
-      <Item key="home" icon={<AppstoreOutlined />}>
-        <Link to="/">Home</Link>
-      </Item>
-      <Item key="shop" icon={<ShoppingOutlined />}>
-        <Link to="/shop">Shop</Link>
-      </Item>
-      <Item key="cart" icon={<ShoppingCartOutlined />}>
-        <Link to="/cart">
-          <Badge count={cart.length} offset={[9, 0]}>
-            Cart
-          </Badge>
-        </Link>
-      </Item>
-      {!user && (
-        <Item key="register" icon={<UserAddOutlined />} className="float-right">
-          <Link to="/register">Register</Link>
-        </Item>
-      )}
-      {!user && (
-        <Item key="login" icon={<UserOutlined />} className="float-right">
-          <Link to="/login">Login</Link>
-        </Item>
-      )}
-      {user && (
-        <SubMenu
-          key="SubMenu"
-          icon={<SettingOutlined />}
-          title={user.email && user.email.split("@")[0]} //name@gmail.com to name
-          className="float-right"
+    <nav className="menuBar">
+      <div className="menuCon">
+        <div className="logo">
+          <Link to="/">
+            <img src={Logo} alt="logo" width="100px" height="50px" />
+          </Link>
+        </div>
+        <div className="leftMenu">
+          <LeftMenu />
+        </div>
+        <div className="rightMenu">
+          <RightMenu />
+        </div>
+        <Button className="barsMenu" onClick={showDrawer}>
+          <span className="barsBtn"></span>
+        </Button>
+        <Drawer
+          title="Giggle Shop"
+          placement="right"
+          closable={false}
+          onClose={onClose}
+          visible={visible}
         >
-          {user && user.role === "subscriber" && (
-            <Item key="setting:1">
-              <Link to="/user/history">Dashboard</Link>
-            </Item>
-          )}
-          {user && user.role === "admin" && (
-            <Item key="setting:1">
-              <Link to="/admin/dashboard">Dashboard</Link>
-            </Item>
-          )}
-          <Item icon={<LogoutOutlined />} onClick={logout}>
-            Logout
-          </Item>
-        </SubMenu>
-      )}
-      <span className="float-right pt-2">
-        <Search />
-      </span>
-    </Menu>
+          <LeftMenu />
+          <RightMenu />
+        </Drawer>
+      </div>
+    </nav>
   );
 };
 

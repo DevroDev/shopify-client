@@ -1,0 +1,109 @@
+@import "~antd/dist/antd.css";
+
+.menuBar {
+  background-color: white;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  -webkit-box-shadow: 0px 0px 6px 3px rgba(112, 112, 112, 1);
+  -moz-box-shadow: 0px 0px 6px 3px rgba(112, 112, 112, 1);
+  box-shadow: 0px 0px 6px 3px rgba(112, 112, 112, 1);
+}
+.logo{
+    display: none;
+}
+.menuCon .ant-menu-horizontal {
+  border-bottom: none;
+}
+
+.menuCon .leftMenu {
+  float: left;
+}
+
+.menuCon .rightMenu {
+  float: right;
+}
+
+.barsMenu {
+  float: right;
+  height: 36px;
+  padding: 15px;
+  margin: 10px;
+  display: none;
+  border: 2px solid #adefd1ff;
+}
+
+.barsBtn {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #adefd1ff;
+  position: relative;
+}
+
+.barsBtn:after,
+.barsBtn:before {
+  content: attr(x);
+  width: 25px;
+  position: absolute;
+  top: -6px;
+  left: 0;
+  height: 2px;
+  background: #adefd1ff;
+}
+
+.barsBtn:after {
+  top: auto;
+  bottom: -6px;
+}
+
+.ant-drawer-body {
+  padding: 0;
+}
+
+.barsMenu > span {
+  display: block;
+}
+
+.nav-responsive {
+  float: right;
+}
+.ant-drawer-body .ant-menu-horizontal > .ant-menu-item,
+.ant-drawer-body .ant-menu-horizontal > .ant-menu-submenu {
+  display: inline-block;
+  width: 100%;
+}
+
+.ant-drawer-body .ant-menu-horizontal {
+  border-bottom: none;
+}
+
+.ant-drawer-body .ant-menu-horizontal > .ant-menu-item:hover {
+  border-bottom-color: transparent;
+}
+
+@media (max-width: 767px) {
+  .barsMenu {
+    display: inline-block;
+  }
+  .logo{
+      float: left;
+      display: inline;
+      margin-left: 5px;
+  }
+
+  .leftMenu,
+  .rightMenu {
+    display: none;
+  }
+
+  .menuCon .ant-menu-item,
+  .menuCon .ant-menu-submenu-title {
+    padding: 1px 20px;
+  }
+  .nav-responsive {
+    float: left;
+  }
+}
